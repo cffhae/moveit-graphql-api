@@ -7,7 +7,7 @@ import { UserInput } from './create/UserInput'
 @Resolver()
 export class UserResolver {
 	@Query()
-	async hello() {
+	hello(): String {
 		return 'Hello World'
 	}
 

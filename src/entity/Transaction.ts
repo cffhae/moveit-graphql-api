@@ -3,7 +3,7 @@ import {
 	Entity,
 	Column,
 	PrimaryGeneratedColumn,
-	OneToMany
+	ManyToOne
 } from 'typeorm'
 import { ObjectType, Field } from 'type-graphql'
 import { StatusCode } from './StatusCode'
@@ -25,16 +25,16 @@ export class Transaction extends BaseEntity {
 	@Column({ type: 'datetime' })
 	timestamp: string
 
-	@OneToMany(() => StatusCode, statusCode => statusCode.statusCode)
-	@Column()
+	@ManyToOne(() => StatusCode, statusCode => statusCode.statusCode)
+	@Column({ length: 8 })
 	statusCode: StatusCode
 
 	@Field(() => Room, { nullable: true })
-	@Column({ nullable: true })
+	@Column({ type: 'varchar', nullable: true, length: 10 })
 	roomCode: Room
 
 	@Field(() => Site)
-	@Column({ length: 8 })
+	@Column({ type: 'varchar', length: 8 })
 	siteCode: Site
 
 	@Field()

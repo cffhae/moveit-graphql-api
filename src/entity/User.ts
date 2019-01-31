@@ -1,19 +1,18 @@
 import { Entity, PrimaryColumn, BaseEntity, Column } from 'typeorm'
-import { ObjectType, Field, ID } from 'type-graphql'
+import { ObjectType, Field } from 'type-graphql'
 
 @ObjectType()
 @Entity()
 export class User extends BaseEntity {
-	@Field(() => ID)
-	@PrimaryColumn()
+	@PrimaryColumn({ type: 'smallint' })
 	userId: number
 
 	@Field()
-	@Column()
+	@Column({ length: 50 })
 	firstName: string
 
 	@Field()
-	@Column()
+	@Column({ length: 50 })
 	lastName: string
 
 	@Column()
@@ -23,7 +22,7 @@ export class User extends BaseEntity {
 	salt: string
 
 	@Field()
-	@Column()
+	@Column({ length: 15 })
 	roleCode: string
 
 	@Field()
